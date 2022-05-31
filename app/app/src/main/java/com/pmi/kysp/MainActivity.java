@@ -17,7 +17,7 @@ import com.google.zxing.integration.android.IntentResult;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    Toast toast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (toast != null) toast.cancel();
                 BarcodeScanner.Scan(MainActivity.this);
             }
         });
@@ -53,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
             });
             builder.show();
         }else{
-            Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код", Toast.LENGTH_LONG).show();
+            toast = Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код", Toast.LENGTH_LONG);
+            toast.show();
         }
     }
 }
