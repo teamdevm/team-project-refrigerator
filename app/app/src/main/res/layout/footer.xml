@@ -38,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="30"/>
             <ImageButton
+                android:id="@+id/footer__main_button"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -101,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="30"/>
             <ImageButton
-                android:id="@+id/scan_barcode_button"
+                android:id="@+id/footer__settings_button"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ImageButton btnScan = findViewById(R.id.footer__scan_barcode_button);
+        ImageButton btnMain = findViewById(R.id.footer__main_button);
+        btnMain.setActivated(true);
 
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
