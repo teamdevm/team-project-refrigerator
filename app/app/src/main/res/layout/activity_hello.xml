@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HelloActivity">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_hor_app_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25"
+        />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_ver_app_name_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.27"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/gl_hor_app_name_text"
+        android:text="KYPS"
+        android:fontFamily="@font/suez_one"
+        android:textSize="70sp"
+        android:textColor="@color/light_black"
+        android:rotation="350"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/gl_ver_app_name_text"
+        app:layout_constraintTop_toBottomOf="@id/gl_hor_app_name_text"
+        android:text="Сохраните ваши продукты!"
+        android:fontFamily="@font/namu"
+        android:textSize="25sp"
+        android:textColor="@color/gray"
+        android:gravity="center"
+        />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.8"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_greetings_bottom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7"
+        />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/gl_greetings_bottom"
+        android:background="@drawable/va_greetings"
+        app:layout_constraintHeight_percent="0.4"
+        />
+
+    <Button
+        android:id="@+id/hello_activity__start_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_button"
+        android:text="Get Started"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@id/gl_down"
+        app:layout_constraintStart_toEndOf="@id/gl_left"
+        style="?android:attr/borderlessButtonStyle"
+        app:layout_constraintWidth_percent="0.5"
+        app:layout_constraintHeight_percent="0.08"
+        app:layout_constraintEnd_toStartOf="@id/gl_right"/>
+
+  <!--  <include layout="@layout/footer"
+        android:id="@+id/footer"/>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
