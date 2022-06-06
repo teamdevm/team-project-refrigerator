@@ -124,11 +124,23 @@
                     android:layout_height="match_parent"
                     android:text="«Скоро испортится»"
                     android:gravity="left|center"
-                    android:layout_weight="65"
+                    android:layout_weight="70"
                     android:fontFamily="@font/namu"
                     android:textSize="23sp"
                     android:textColor="@color/black"/>
-                <TextView
+
+                <!-- TODO: Сделать размер текста побольше -->
+                <NumberPicker
+                    android:id="@+id/np"
+                    android:layout_width="0dp"
+                    android:selectionDividerHeight="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="20"/>
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="5"/>
+                <!--<TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:text="2 дня"
@@ -136,7 +148,7 @@
                     android:layout_weight="30"
                     android:fontFamily="@font/namu"
                     android:textSize="23sp"
-                    android:textColor="@color/black"/>
+                    android:textColor="@color/black"/>-->
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

@@ -5,6 +5,7 @@ import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.NumberPicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -22,6 +23,16 @@ public class SettingsActivity extends Activity {
 
         ImageButton btnSettings = findViewById(R.id.footer__settings_button);
         btnSettings.setActivated(true);
+
+        // TODO: Сделать более красивое решение + добавить падежи для чисел
+        String[] numbers = new String[30];
+        for(int i = 1; i <= 30; i++) {
+            numbers[i-1] = i + " дня";
+        }
+        NumberPicker numberPicker = findViewById(R.id.np);
+        numberPicker.setMinValue(1);
+        numberPicker.setMaxValue(30);
+        numberPicker.setDisplayedValues(numbers);
 
         // TODO: Запоминание времени + подгрузка при открытии настроек
         timeText = findViewById(R.id.settings__time_text);
