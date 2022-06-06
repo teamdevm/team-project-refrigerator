@@ -184,6 +184,7 @@
                 android:textSize="23sp"
                 android:textColor="@color/black"/>
             <TextView
+                android:id="@+id/settings__time_text"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:text="17:00"
@@ -191,7 +192,9 @@
                 android:layout_weight="30"
                 android:fontFamily="@font/namu"
                 android:textSize="23sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:onClick="onClick"
+                android:clickable="true"/>
         </LinearLayout>
         <View
             android:layout_width="match_parent"
