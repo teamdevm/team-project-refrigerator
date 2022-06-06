@@ -15,6 +15,8 @@ import android.widget.Toast;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
 
     Toast toast;
@@ -25,7 +27,14 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton btnScan = findViewById(R.id.footer__scan_barcode_button);
         ImageButton btnMain = findViewById(R.id.footer__main_button);
+        ImageButton btnSettings = findViewById(R.id.footer__settings_button);
+
         btnMain.setActivated(true);
+        btnSettings.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+            }
+        });
 
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
