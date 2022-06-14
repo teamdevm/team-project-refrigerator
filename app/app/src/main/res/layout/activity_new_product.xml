@@ -105,6 +105,7 @@
             android:textSize="25sp"
             android:textColor="@color/black"
             android:gravity="center"
+            android:id="@+id/product_name"
             />
         <LinearLayout
             android:layout_width="match_parent"
@@ -124,7 +125,8 @@
                 android:fontFamily="@font/namu"
                 android:textSize="20sp"
                 android:textColor="@color/gray"
-                android:inputType="textMultiLine"/>
+                android:inputType="textMultiLine"
+                android:id="@+id/product_description"/>
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
