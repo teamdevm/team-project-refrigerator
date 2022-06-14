@@ -17,6 +17,9 @@
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/background_product.xml" value="0.1" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/button_delete.xml" value="0.1" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/numericupdown_minus.xml" value="0.1715" />
+        <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/preview_down.xml" value="0.3155" />
+        <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/preview_up.xml" value="0.3155" />
+        <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/stroke.xml" value="0.3155" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/va_background.xml" value="0.1365" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/va_frame.xml" value="0.1365" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/va_lines.xml" value="0.2165" />
@@ -25,7 +28,7 @@
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_camera.xml" value="0.29936594202898553" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_hello.xml" value="0.29936594202898553" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_new_product.xml" value="0.25" />
+        <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_new_product.xml" value="0.5" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_settings.xml" value="0.25" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/barcode_scanner.xml" value="0.14" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/footer.xml" value="0.2064814814814815" />
