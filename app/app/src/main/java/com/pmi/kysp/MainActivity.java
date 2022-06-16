@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
         String content = BarcodeScanner.Decode(requestCode, resultCode, data);
 
         if (content != null){
+            /*
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
             builder.setTitle("Результат");
 
@@ -60,10 +61,14 @@ public class MainActivity extends AppCompatActivity {
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
+
                 }
             });
             builder.show();
+             */
+            Intent newProductIntent = new Intent(MainActivity.this, NewProductActivity.class);
+            newProductIntent.putExtra("barcode", content);
+            startActivity(newProductIntent);
         }else{
             toast = Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код", Toast.LENGTH_LONG);
             toast.show();
