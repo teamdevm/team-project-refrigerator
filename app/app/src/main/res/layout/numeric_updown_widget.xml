@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="100">
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="24"
+        android:background="@drawable/va_minus"
+        android:id="@+id/numeric__minus"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="52"
+        android:text="0"
+        android:gravity="center"
+        android:textSize="23sp"
+        android:textColor="@color/white"
+        android:background="@color/primary_color"
+        android:id="@+id/numeric__number"/>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="24"
+        android:background="@drawable/va_plus"
+        android:id="@+id/numeric__plus"/>
+
+</LinearLayout>
