@@ -39,8 +39,22 @@
             android:stateNotNeeded="true"
             android:theme="@style/zxing_CaptureTheme"/>
         <activity
-            android:name=".SettingsActivity"
+            android:name=".NewProductActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
         </activity>
     </application>
 
