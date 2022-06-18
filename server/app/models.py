@@ -1,15 +1,4 @@
-from flask import Flask, jsonify
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow 
-import os
-
-app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DB_URI')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-db = SQLAlchemy(app)
-ma = Marshmallow(app)
+from app import db
 
 class Product (db.Model):
     __tablename__ = 'server_products'
@@ -33,7 +22,6 @@ class Product (db.Model):
         self.energy = energy
         self.photo = photo
 
-
 class Category (db.Model):
     __tablename__ = 'category'
 
@@ -45,10 +33,3 @@ class Category (db.Model):
         self.id = id
         self.name = name
 
-
-
-
-def run():
-    app.run(host=os.environ.get('HOST', '0.0.0.0'),
-            port=os.environ.get('PORT', 5000),
-            debug=bool(os.environ.get('DEBUG', '1')))
