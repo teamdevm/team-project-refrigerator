@@ -21,7 +21,7 @@ public class SettingsActivity extends Activity {
     private static final String[] DAYS = {"1 день", "2 дня", "3 дня", "4 дня", "5 дней", "6 дней", "7 дней", "8 дней", "9 дней", "10 дней"};
     int hour, minute;
     TextView timeText;
-    Toast toast;
+    Toast toast, toastError;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +57,7 @@ public class SettingsActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (toast != null) toast.cancel();
+                if (toastError != null) toastError.cancel();
                 BarcodeScanner.Scan(SettingsActivity.this);
             }
         });
@@ -86,18 +87,20 @@ public class SettingsActivity extends Activity {
         String content = BarcodeScanner.Decode(requestCode, resultCode, data);
 
         if (content != null){
-            AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
-            builder.setTitle("Результат");
-
-            builder.setMessage(content);
-
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            builder.show();
+            int responseCode = ProductsApi.checkProduct(content);
+            if (responseCode == -1){
+                toastError = Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код\nПроверьте подключение к интернету", Toast.LENGTH_LONG);
+                toastError.show();
+                return;
+            }
+            if (responseCode == 404){
+                toastError = Toast.makeText(getApplicationContext(), "Данного продукта ещё нет в нашей базе", Toast.LENGTH_LONG);
+                toastError.show();
+                return;
+            }
+            Intent newProductIntent = new Intent(SettingsActivity.this, NewProductActivity.class);
+            newProductIntent.putExtra("barcode", content);
+            startActivity(newProductIntent);
         }else{
             toast = Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код", Toast.LENGTH_LONG);
             toast.show();
