@@ -2,7 +2,7 @@ package com.pmi.kysp;
 
 public class Product {
     private String barcode, product_name, photo;
-    private int category_id, energy;
+    private int category_id, energy, expiring_date;
     private double protein, fat, carbohydrate;
 
     public String getBarcode(){

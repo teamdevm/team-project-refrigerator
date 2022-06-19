@@ -57,12 +57,14 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         String content = BarcodeScanner.Decode(requestCode, resultCode, data);
+
         if (content != null){
-            if (ProductsApi.checkProduct(content) == -1){
+            int responseCode = ProductsApi.checkProduct(content);
+            if (responseCode == -1){
                 Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код\nПроверьте подключение к интернету", Toast.LENGTH_LONG).show();
                 return;
             }
-            if (ProductsApi.checkProduct(content) == 404){
+            if (responseCode == 404){
                 Toast.makeText(getApplicationContext(), "Данного продукта ещё нет в нашей базе", Toast.LENGTH_LONG).show();
                 return;
             }

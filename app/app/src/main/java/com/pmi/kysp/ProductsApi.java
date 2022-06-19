@@ -28,13 +28,11 @@ public class ProductsApi {
                     connection.setConnectTimeout(5000);
                     connection.setReadTimeout(5000);
                     connection.setRequestProperty("Connection", "close");
-                    System.out.println(connection.getResponseCode());
                     responseCode = connection.getResponseCode();
                     connection.disconnect();
                 }
                 catch (Exception e)
                 {
-                    System.out.print(e.getMessage());
                     e.printStackTrace();
                 }
             }
@@ -66,7 +64,6 @@ public class ProductsApi {
                     connection.setConnectTimeout(5000);
                     connection.setReadTimeout(5000);
                     connection.setRequestProperty("Connection", "close");
-                    System.out.println(connection.getResponseCode());
                     if (connection.getResponseCode() != 200) return;
 
                     BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
@@ -75,19 +72,15 @@ public class ProductsApi {
                     String line;
                     while ((line = br.readLine()) != null) {
                         sb.append(line+"\n");
-                        System.out.println(line);
                     }
                     br.close();
                     connection.disconnect();
                     String data = sb.toString();
-                    System.out.println(data);
                     product = new Gson().fromJson(data, Product.class);
-                    System.out.println(product.getDescription());
 
                 }
                 catch (Exception e)
                 {
-                    System.out.print(e.getMessage());
                     e.printStackTrace();
                 }
             }
