@@ -3,9 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/activity_camera.xml" value="0.1331521739130435" />
         <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/activity_hello.xml" value="0.11302083333333333" />
         <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
+        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/activity_new_product.xml" value="0.25416666666666665" />
+        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/activity_settings.xml" value="0.25416666666666665" />
+        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/barcode_scanner.xml" value="0.136" />
         <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/footer.xml" value="0.11302083333333333" />
+        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/numeric_updown_widget.xml" value="0.14895833333333333" />
+        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/product_background.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/button_main.xml" value="0.1505" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/button_settings.xml" value="0.1505" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/footer.xml" value="0.1085" />

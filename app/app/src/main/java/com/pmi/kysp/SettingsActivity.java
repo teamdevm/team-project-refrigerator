@@ -86,18 +86,17 @@ public class SettingsActivity extends Activity {
         String content = BarcodeScanner.Decode(requestCode, resultCode, data);
 
         if (content != null){
-            AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
-            builder.setTitle("Результат");
-
-            builder.setMessage(content);
-
-            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-                }
-            });
-            builder.show();
+            if (ProductsApi.checkProduct(content) == -1){
+                Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код\nПроверьте подключение к интернету", Toast.LENGTH_LONG).show();
+                return;
+            }
+            if (ProductsApi.checkProduct(content) == 404){
+                Toast.makeText(getApplicationContext(), "Данного продукта ещё нет в нашей базе", Toast.LENGTH_LONG).show();
+                return;
+            }
+            Intent newProductIntent = new Intent(SettingsActivity.this, NewProductActivity.class);
+            newProductIntent.putExtra("barcode", content);
+            startActivity(newProductIntent);
         }else{
             toast = Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код", Toast.LENGTH_LONG);
             toast.show();
