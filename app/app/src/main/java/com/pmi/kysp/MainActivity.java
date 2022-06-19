@@ -20,7 +20,7 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
-    Toast toast;
+    Toast toast, toastError;
     DatabaseHelper databaseHelper;
     SQLiteDatabase db;
     @Override
@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (toast != null) toast.cancel();
+                if (toastError != null) toastError.cancel();
                 BarcodeScanner.Scan(MainActivity.this);
             }
         });
@@ -61,11 +62,13 @@ public class MainActivity extends AppCompatActivity {
         if (content != null){
             int responseCode = ProductsApi.checkProduct(content);
             if (responseCode == -1){
-                Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код\nПроверьте подключение к интернету", Toast.LENGTH_LONG).show();
+                toastError = Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код\nПроверьте подключение к интернету", Toast.LENGTH_LONG);
+                toastError.show();
                 return;
             }
             if (responseCode == 404){
-                Toast.makeText(getApplicationContext(), "Данного продукта ещё нет в нашей базе", Toast.LENGTH_LONG).show();
+                toastError = Toast.makeText(getApplicationContext(), "Данного продукта ещё нет в нашей базе", Toast.LENGTH_LONG);
+                toastError.show();
                 return;
             }
             Intent newProductIntent = new Intent(MainActivity.this, NewProductActivity.class);
