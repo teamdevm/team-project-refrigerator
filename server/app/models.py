@@ -11,8 +11,9 @@ class Product (db.Model):
     carbohydrate = db.Column(db.Float)
     energy = db.Column(db.Integer)
     photo = db.Column(db.Text)
+    expiring_date = db.Column(db.Integer)
 
-    def __init__(self, barcode, product_name, category_id, protein, fat, carbohydrate, energy, photo):
+    def __init__(self, barcode, product_name, category_id, protein, fat, carbohydrate, energy, photo, expiring_date):
         self.barcode = barcode
         self.product_name = product_name
         self.category_id = category_id  
@@ -21,6 +22,7 @@ class Product (db.Model):
         self.carbohydrate = carbohydrate
         self.energy = energy
         self.photo = photo
+        self.expiring_date = expiring_date
 
 class Category (db.Model):
     __tablename__ = 'category'
