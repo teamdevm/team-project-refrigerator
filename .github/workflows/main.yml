@@ -23,7 +23,7 @@ jobs:
     - name: Access SERVER_URI
       env:
         SERVER_URI: ${{ secrets.SERVER_URI }}
-      run: echo SERVER_URI=$SERVER_URI > ./app/local.properties
+      run: echo SERVER_URI=\"$SERVER_URI\" > ./app/local.properties
     - name: Build with Gradle
       run: cd app && ./gradlew assembleDebug
 
