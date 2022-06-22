@@ -22,7 +22,7 @@ public class ProductsApi {
             {
                 try
                 {
-                    URL url = new URL(String.format("%s/products/%s",DBconfig.URI, barcode));
+                    URL url = new URL(String.format("%s/products/%s",BuildConfig.SERVER_URI, barcode));
 
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setConnectTimeout(5000);
@@ -58,7 +58,7 @@ public class ProductsApi {
             {
                 try
                 {
-                    URL url = new URL(String.format("%s/products/%s",DBconfig.URI, barcode));
+                    URL url = new URL(String.format("%s/products/%s",BuildConfig.SERVER_URI, barcode));
 
                     HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                     connection.setConnectTimeout(5000);
