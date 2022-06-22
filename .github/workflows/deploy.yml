@@ -22,5 +22,5 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
         script: |
-          cd refrigerator_project/
-          ls
+          git -C refrigerator_project/team-project-refrigerator checkout master
+          git -C refrigerator_project/team-project-refrigerator pull
