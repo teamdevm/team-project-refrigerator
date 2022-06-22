@@ -21,7 +21,11 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x ./app/gradlew
     - name: Build with Gradle
-      run: cd app && ./gradlew build
+      run: cd app && ./gradlew assembleDebug
+    - name: Access SERVER_URI
+      env:
+        SERVER_URI: ${{ secrets.SERVER_URI }}
+      run: echo SERVER_URI=\"$SERVER_URI\" > ./local.properties
     - uses: actions/upload-artifact@v1
       with:
         name: my-artifact
