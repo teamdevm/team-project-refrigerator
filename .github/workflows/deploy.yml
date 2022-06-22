@@ -23,7 +23,7 @@ jobs:
         KEY: ${{ secrets.SSHKEY }}
       with:
         source: "."
-        target: "/refrigerator_project/team-project-refrigerator"
+        target: "/refrigerator_project"
 
     - name: Executing remote command
       uses: appleboy/ssh-action@master
