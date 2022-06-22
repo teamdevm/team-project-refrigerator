@@ -88,15 +88,17 @@
                 android:layout_weight="30"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
+
                 <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/settings__switch_notifications"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:checked="true"
                     android:gravity="center"
                     android:scaleX="1.5"
                     android:scaleY="1.5"
-                    android:layout_centerInParent="true"
-                    android:text=""/>
+                    android:text="" />
             </RelativeLayout>
         </LinearLayout>
         <View
