@@ -2,7 +2,7 @@ package com.pmi.kysp;
 
 public class Category {
     private String name;
-    private boolean isChosen;
+    public boolean isChosen;
 
     public Category(String name, boolean isChosen)
     {
@@ -13,11 +13,6 @@ public class Category {
     public String getName()
     {
         return name;
-    }
-
-    public boolean isChosen()
-    {
-        return isChosen;
     }
 
 }

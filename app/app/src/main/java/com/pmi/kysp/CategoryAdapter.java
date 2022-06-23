@@ -1,5 +1,6 @@
 package com.pmi.kysp;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder> {
-    private List<Category> categories = new ArrayList<>();
+    private static List<Category> categories = new ArrayList<>();
     private static ClickListener clickListener;
 
     public interface ClickListener {
@@ -24,7 +25,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         CategoryAdapter.clickListener = clickListener;
     }
 
-    public static class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private TextView categoryTextView;
         public CategoryViewHolder(View itemView)
         {
@@ -42,7 +43,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         public void bind(Category category)
         {
             categoryTextView.setText(category.getName());
-            categoryTextView.setActivated(category.isChosen());
+            categoryTextView.setActivated(category.isChosen);
         }
     }
 
@@ -65,6 +66,13 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     public void addCategories(Collection<Category> newCategories)
     {
         categories.addAll(newCategories);
+        notifyDataSetChanged();
+    }
+
+    public void changeStateCategory(int position)
+    {
+        boolean isChosen = categories.get(position).isChosen;
+        categories.get(position).isChosen = !isChosen;
         notifyDataSetChanged();
     }
 }
