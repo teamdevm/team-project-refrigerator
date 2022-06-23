@@ -27,7 +27,7 @@ public class ProductItemDecoration extends RecyclerView.ItemDecoration {
         }
 
         int dataSize = state.getItemCount();
-        if (dataSize > 0 && position == dataSize - 1)
+        if (dataSize > 0 && position >= dataSize - (2 - dataSize%2))
         {
             outRect.bottom = bottomOffset;
         }
