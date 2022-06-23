@@ -5,6 +5,14 @@ public class Product {
     private int category_id, energy, expiring_date;
     private double protein, fat, carbohydrate;
 
+    public Product(String barcode, String product_name, String photo, int expiring_date)
+    {
+        this.barcode = barcode;
+        this.product_name = product_name;
+        this.photo = photo;
+        this.expiring_date = expiring_date;
+    }
+
     public String getBarcode(){
         return barcode;
     }
