@@ -41,8 +41,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
 
         public void bind(Category category)
         {
-            categoryTextView.setText(category.name);
-            categoryTextView.setActivated(category.isChosen);
+            categoryTextView.setText(category.getName());
+            categoryTextView.setActivated(category.isChosen());
         }
     }
 
