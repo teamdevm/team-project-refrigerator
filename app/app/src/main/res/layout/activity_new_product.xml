@@ -148,6 +148,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="20"/>
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/new_product_activity__add_button"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="60"
