@@ -3,16 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/drawable/background_product.xml" value="0.1" />
-        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/activity_camera.xml" value="0.1331521739130435" />
         <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/activity_hello.xml" value="0.11302083333333333" />
         <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
-        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/activity_new_product.xml" value="0.25416666666666665" />
-        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/activity_settings.xml" value="0.25416666666666665" />
-        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/barcode_scanner.xml" value="0.136" />
         <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/footer.xml" value="0.11302083333333333" />
-        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/numeric_updown_widget.xml" value="0.14895833333333333" />
-        <entry key="..\:/Andrey/Study/team-project-refrigerator/app/app/src/main/res/layout/product_background.xml" value="0.14895833333333333" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/button_main.xml" value="0.1505" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/button_settings.xml" value="0.1505" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/footer.xml" value="0.1085" />
@@ -41,6 +34,25 @@
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/footer.xml" value="0.2064814814814815" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/numeric_updown_widget.xml" value="0.25" />
         <entry key="..\:/Users/ilyar/AndroidStudioProjects/team-project-refrigerator/app/app/src/main/res/layout/product_background.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/button_settings.xml" value="0.2555" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2555" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/rounded_button.xml" value="0.2555" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/va_add_item.xml" value="0.2555" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable-v24/va_greetings.xml" value="0.2555" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/button_delete.xml" value="0.2555" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/category_bg.xml" value="0.2545" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/category_item_bg.xml" value="0.144" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/preview_down.xml" value="0.2555" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/preview_up.xml" value="0.2555" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/va_frame.xml" value="0.2555" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/drawable/va_lines.xml" value="0.2555" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_hello.xml" value="0.25" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_main.xml" value="0.23703703703703705" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_new_product.xml" value="0.2128623188405797" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_product.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/layout/activity_settings.xml" value="0.1096757852077001" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/layout/barcode_scanner.xml" value="0.25" />
+        <entry key="..\:/Users/ilyar/StudioProjects/team-project-refrigerator/app/app/src/main/res/layout/category_item.xml" value="0.536" />
       </map>
     </option>
   </component>
