@@ -33,6 +33,9 @@ public class LocalDBManager {
 
         Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABLE, new String[]{});
 
+        if (cursor.getCount() == 0)
+            return barcodes;
+
         cursor.moveToFirst();
         do {
             String barcode = cursor.getString(0);

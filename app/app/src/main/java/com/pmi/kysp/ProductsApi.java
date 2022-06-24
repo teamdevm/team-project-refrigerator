@@ -107,7 +107,10 @@ public class ProductsApi {
     public static List<Product> getProducts(List<String> barcodes)
     {
         List<Product> products = new ArrayList<>();
-        product = null;
+
+        if (barcodes.isEmpty())
+            return products;
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run()
