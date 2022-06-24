@@ -17,6 +17,16 @@ public class Category {
         this(id, name, false);
     }
 
+    public void changeState()
+    {
+        isChosen = !isChosen;
+    }
+
+    public int getCategoryId()
+    {
+        return id;
+    }
+
     public String getName()
     {
         return name;
