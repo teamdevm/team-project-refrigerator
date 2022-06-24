@@ -29,7 +29,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     private static ClickListener clickListener;
 
     public interface ClickListener {
-        void onItemClick(int position, View v);
+        void onItemClick(int position, Product product);
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
@@ -52,7 +52,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         @Override
         public void onClick(View v)
         {
-            clickListener.onItemClick(getAdapterPosition(), v);
+            int position = getAdapterPosition();
+            clickListener.onItemClick(position, products.get(position));
         }
 
         public void bind(Product product)
@@ -84,8 +85,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         return products.size();
     }
 
-    public void addProducts(Collection<Product> newCategories)
+    public void setProducts(Collection<Product> newCategories)
     {
+        products.clear();
         products.addAll(newCategories);
         notifyDataSetChanged();
     }

@@ -53,11 +53,11 @@ public class MainActivity extends AppCompatActivity {
         Category c4 = new Category(4, "Овощи", false);
         Category c5 = new Category(5, "Фрукты", false);
         Collection<Category> categories = Arrays.asList(c1, c2, c3, c4, c5);
-        categoryAdapter.addCategories(categories);
+        categoryAdapter.setCategories(categories);
 
         categoryAdapter.setOnItemClickListener(new CategoryAdapter.ClickListener() {
             @Override
-            public void onItemClick(int position, View v) {
+            public void onItemClick(int position, Category category) {
                 categoryAdapter.changeStateCategory(position);
             }
         });
@@ -83,8 +83,15 @@ public class MainActivity extends AppCompatActivity {
         Product p6 = new Product("123","Тест5,","123",1, 1);
         Product p7 = new Product("123","Тест5,","123",1, 1);
 
-        Collection<Product> products = Arrays.asList(p1, p2, p3, p4, p5, p6);//, p7);
-        productAdapter.addProducts(products);
+        Collection<Product> products = Arrays.asList(p1, p2, p3, p4, p5, p6, p7);
+        productAdapter.setProducts(products);
+
+        productAdapter.setOnItemClickListener(new ProductAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position, Product product) {
+
+            }
+        });
 
         databaseHelper = new DatabaseHelper(getApplicationContext());
         databaseHelper.create_db();

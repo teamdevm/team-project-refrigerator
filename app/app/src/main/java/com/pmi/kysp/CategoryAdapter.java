@@ -18,7 +18,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     private static ClickListener clickListener;
 
     public interface ClickListener {
-        void onItemClick(int position, View v);
+        void onItemClick(int position, Category category);
     }
 
     public void setOnItemClickListener(ClickListener clickListener) {
@@ -37,7 +37,8 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         @Override
         public void onClick(View v)
         {
-            clickListener.onItemClick(getAdapterPosition(), v);
+            int position = getAdapterPosition();
+            clickListener.onItemClick(position, categories.get(position));
         }
 
         public void bind(Category category)
@@ -63,8 +64,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         return categories.size();
     }
 
-    public void addCategories(Collection<Category> newCategories)
+    public void setCategories(Collection<Category> newCategories)
     {
+        categories.clear();
         categories.addAll(newCategories);
         notifyDataSetChanged();
     }
