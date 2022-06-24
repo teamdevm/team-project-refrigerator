@@ -20,6 +20,11 @@ public class Product {
         this.category_id = category_id;
     }
 
+    public int getCategoryId()
+    {
+        return category_id;
+    }
+
     public String getBarcode(){
         return barcode;
     }

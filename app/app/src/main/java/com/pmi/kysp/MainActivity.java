@@ -45,26 +45,28 @@ public class MainActivity extends AppCompatActivity {
 
         btnMain.setActivated(true);
 
+        // Категории
         CategoryAdapter categoryAdapter = new CategoryAdapter();
         RecyclerView categoryRecyclerView = findViewById(R.id.category_list);
         categoryRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         categoryRecyclerView.setAdapter(categoryAdapter);
 
-        Category c1 = new Category(1,"Все", true);
-        Category c2 = new Category(2, "Мясо", false);
-        Category c3 = new Category(3, "Напитки", true);
-        Category c4 = new Category(4, "Овощи", false);
-        Category c5 = new Category(5, "Фрукты", false);
-        Collection<Category> categories = Arrays.asList(c1, c2, c3, c4, c5);
-        categoryAdapter.setCategories(categories);
+        // Продукты
+        ProductAdapter productAdapter = new ProductAdapter();
+        RecyclerView productRecyclerView = findViewById(R.id.product_list);
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
-        categoryAdapter.setOnItemClickListener(new CategoryAdapter.ClickListener() {
-            @Override
-            public void onItemClick(int position, Category category) {
-                categoryAdapter.changeStateCategory(position);
-            }
-        });
+        int height = metrics.heightPixels;
+        int width = metrics.widthPixels;
+        productRecyclerView.addItemDecoration(new ProductItemDecoration((int)(0.04*width), (int)(0.1*height)));
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
 
+        productRecyclerView.setLayoutManager(layoutManager);
+        productRecyclerView.setAdapter(productAdapter);
+
+
+        // Обработка нажатий
         LocalDBManager localDBManager = new LocalDBManager(this);
         List<String> barcodes = localDBManager.getBarcodes();
         List<Product> products = ProductsApi.getProducts(barcodes);
@@ -78,21 +80,11 @@ public class MainActivity extends AppCompatActivity {
             }
             p.updateExpDate(manufactureDate);
         });
-
-
-        ProductAdapter productAdapter = new ProductAdapter();
-        RecyclerView productRecyclerView = findViewById(R.id.product_list);
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-
-        int height = metrics.heightPixels;
-        int width = metrics.widthPixels;
-        productRecyclerView.addItemDecoration(new ProductItemDecoration((int)(0.04*width), (int)(0.1*height)));
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2, GridLayoutManager.VERTICAL, false);
-
-        productRecyclerView.setLayoutManager(layoutManager);
-        productRecyclerView.setAdapter(productAdapter);
+        List<Category> categories = CategoriesApi.getAllCategories();
+        categoryAdapter.setCategories(categories);
         productAdapter.setProducts(products);
+
+        CategoryManager categoryManager = new CategoryManager(products, categories);
 
         productAdapter.setOnItemClickListener(new ProductAdapter.ClickListener() {
             @Override
@@ -102,6 +94,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(productIntent);
             }
         });
+
+        categoryAdapter.setOnItemClickListener(new CategoryAdapter.ClickListener() {
+            @Override
+            public void onItemClick(int position, Category category) {
+                int categoryId = category.getCategoryId();
+
+                categoryManager.changeStateOfCategory(categoryId);
+
+                productAdapter.setProducts(categoryManager.getProducts());
+                categoryAdapter.setCategories(categoryManager.getCategories());
+            }
+        });
+
 
         databaseHelper = new DatabaseHelper(getApplicationContext());
         databaseHelper.create_db();
