@@ -21,6 +21,7 @@ public class LocalDBManager {
     public LocalDBManager(Context context)
     {
         dbHelper = new DatabaseHelper(context);
+        dbHelper.create_db();
         db = dbHelper.open();
     }
 
