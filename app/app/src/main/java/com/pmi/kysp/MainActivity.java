@@ -30,10 +30,13 @@ import java.util.List;
 import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final int UPDATE_CONTAINERS = 1;
     Toast toast, toastError;
     DatabaseHelper databaseHelper;
     SQLiteDatabase db;
+    ProductAdapter productAdapter;
+    CategoryAdapter categoryAdapter;
+    CategoryManager categoryManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,13 +49,13 @@ public class MainActivity extends AppCompatActivity {
         btnMain.setActivated(true);
 
         // Категории
-        CategoryAdapter categoryAdapter = new CategoryAdapter();
+        categoryAdapter = new CategoryAdapter();
         RecyclerView categoryRecyclerView = findViewById(R.id.category_list);
         categoryRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         categoryRecyclerView.setAdapter(categoryAdapter);
 
         // Продукты
-        ProductAdapter productAdapter = new ProductAdapter();
+        productAdapter = new ProductAdapter();
         RecyclerView productRecyclerView = findViewById(R.id.product_list);
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -67,24 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // Обработка нажатий
-        LocalDBManager localDBManager = new LocalDBManager(this);
-        List<String> barcodes = localDBManager.getBarcodes();
-        List<Product> products = ProductsApi.getProducts(barcodes);
-        products.forEach(p -> {
-            String barcode = p.getBarcode();
-            LocalDate manufactureDate = null;
-            try {
-                manufactureDate = localDBManager.getManufactureDate(barcode);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            p.updateExpDate(manufactureDate);
-        });
-        List<Category> categories = CategoriesApi.getAllCategories();
-        categoryAdapter.setCategories(categories);
-        productAdapter.setProducts(products);
-
-        CategoryManager categoryManager = new CategoryManager(products, categories);
+        loadData();
 
         productAdapter.setOnItemClickListener(new ProductAdapter.ClickListener() {
             @Override
@@ -108,9 +94,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        databaseHelper = new DatabaseHelper(getApplicationContext());
-        databaseHelper.create_db();
-
         btnSettings.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                 startActivity(new Intent(MainActivity.this, SettingsActivity.class));
@@ -127,9 +110,37 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void loadData()
+    {
+        LocalDBManager localDBManager = new LocalDBManager(this);
+        List<String> barcodes = localDBManager.getBarcodes();
+        List<Product> products = ProductsApi.getProducts(barcodes);
+        products.forEach(p -> {
+            String barcode = p.getBarcode();
+            LocalDate manufactureDate = null;
+            try {
+                manufactureDate = localDBManager.getManufactureDate(barcode);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            p.updateExpDate(manufactureDate);
+        });
+        List<Category> categories = CategoriesApi.getAllCategories();
+        categoryManager = new CategoryManager(products, categories);
+
+        categoryAdapter.setCategories(categoryManager.getCategories());
+        productAdapter.setProducts(categoryManager.getProducts());
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == UPDATE_CONTAINERS)
+        {
+            loadData();
+            return;
+        }
 
         String content = BarcodeScanner.Decode(requestCode, resultCode, data);
 
@@ -147,7 +158,8 @@ public class MainActivity extends AppCompatActivity {
             }
             Intent newProductIntent = new Intent(MainActivity.this, NewProductActivity.class);
             newProductIntent.putExtra("barcode", content);
-            startActivity(newProductIntent);
+            startActivityForResult(newProductIntent, UPDATE_CONTAINERS);
+
         }else{
             toast = Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код", Toast.LENGTH_LONG);
             toast.show();
