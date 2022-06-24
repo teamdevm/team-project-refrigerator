@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="230dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:weightSum="100">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="75">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/preview_up"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
+            android:id="@+id/product_item__image"
+            />
+        <TextView
+            android:id="@+id/product_item__name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Бананы"
+            android:gravity="bottom"
+            android:fontFamily="@font/namu"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:padding="8dp"/>
+    </FrameLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="20"
+        android:text="5 дней"
+        android:textColor="@color/white"
+        android:textAllCaps="false"
+        android:fontFamily="@font/namu"
+        android:textSize="15sp"
+        android:background="@drawable/preview_down"
+        android:id="@+id/product_item__exp_date"/>
+</LinearLayout>
