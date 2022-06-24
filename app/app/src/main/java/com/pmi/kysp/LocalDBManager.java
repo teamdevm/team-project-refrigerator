@@ -7,8 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class LocalDBManager {
@@ -31,7 +34,7 @@ public class LocalDBManager {
     public List<String> getBarcodes() {
         List<String> barcodes = new ArrayList<>();
 
-        Cursor cursor = db.rawQuery("SELECT * FROM " + DatabaseHelper.TABLE, new String[]{});
+        Cursor cursor = db.rawQuery("SELECT " + DatabaseHelper.COLUMN_BARCODE + " FROM " + DatabaseHelper.TABLE, new String[]{});
 
         if (cursor.getCount() == 0)
             return barcodes;
@@ -47,5 +50,20 @@ public class LocalDBManager {
         Log.d("barcodes", barcodes.toString());
 
         return barcodes;
+    }
+
+    public LocalDate getManufactureDate(String barcode) throws ParseException {
+        Cursor cursor = db.rawQuery("SELECT " + DatabaseHelper.COLUMN_DATE_OF_MANUFACTURE + " FROM " + DatabaseHelper.TABLE + " WHERE " + DatabaseHelper.COLUMN_BARCODE + " = ?", new String[]{barcode});
+
+        if (cursor.getCount() == 0)
+            return LocalDate.now();
+
+        cursor.moveToFirst();
+        String dateManufactureString = cursor.getString(0);
+        LocalDate manufactureDate = LocalDate.parse(dateManufactureString);
+
+        cursor.close();
+
+        return manufactureDate;
     }
 }

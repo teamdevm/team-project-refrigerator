@@ -2,6 +2,7 @@ package com.pmi.kysp;
 
 import android.util.JsonReader;
 import android.util.Log;
+import android.util.Pair;
 
 import com.google.gson.Gson;
 
@@ -14,6 +15,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.security.KeyPair;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,7 +138,7 @@ public class ProductsApi {
                     connection.disconnect();
                     String data = sb.toString();
                     JSONArray productsJSON = new JSONArray(data);
-                    for (int i = 0; i <productsJSON.length(); i++)
+                    for (int i = 0; i < productsJSON.length(); i++)
                     {
                         JSONObject productJSON = productsJSON.getJSONObject(i);
                         Product product = new Gson().fromJson(productJSON.toString(), Product.class);

@@ -1,5 +1,11 @@
 package com.pmi.kysp;
 
+import android.util.Log;
+
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.Date;
+
 public class Product {
     private String barcode, product_name, photo;
     private int category_id, energy, expiring_date;
@@ -28,6 +34,13 @@ public class Product {
 
     public String getDescription(){
         return String.format("Белки: %.2f\nЖиры: %.2f\nУглеводы: %.2f\nКкал: %d", protein, fat, carbohydrate, energy);
+    }
+
+    public void updateExpDate(LocalDate manufactureDate)
+    {
+        LocalDate expirationDate = manufactureDate.plusDays(expiring_date);
+
+        expiring_date = (int)ChronoUnit.DAYS.between(LocalDate.now(), expirationDate);
     }
 
     public String getExpDateString(){

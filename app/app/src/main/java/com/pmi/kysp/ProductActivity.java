@@ -14,21 +14,29 @@ import androidx.appcompat.widget.AppCompatButton;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.ParseException;
 
 public class ProductActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product);
-        initActivity();
+        try {
+            initActivity();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
-    protected void initActivity() {
+    protected void initActivity() throws ParseException {
+        LocalDBManager localDBManager = new LocalDBManager(this);
+
         AppCompatButton deleteButton = (AppCompatButton) findViewById(R.id.product_activity__del_button);
 
         String barcode = getIntent().getExtras().getString("barcode");
         Log.d("barcode", barcode);
         Product product = ProductsApi.getProduct(barcode);
+        product.updateExpDate(localDBManager.getManufactureDate(barcode));
 
         setProductInfo(product);
 
