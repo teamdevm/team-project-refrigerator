@@ -41,7 +41,12 @@ public class ProductActivity extends AppCompatActivity {
         int quantity = localDBManager.getQuantity(barcode);
         NumericUpDownWidget numericUpDownWidget = (NumericUpDownWidget) findViewById(R.id.numeric);
         numericUpDownWidget.setValue(quantity);
-
+        numericUpDownWidget.setOnValueChangeListener(new NumericUpDownWidget.ValueChangeListener() {
+            @Override
+            public void onValueChange(int value) {
+                localDBManager.updateQuantity(barcode, value);
+            }
+        });
 
         setProductInfo(product);
 
@@ -52,8 +57,6 @@ public class ProductActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        // TODO: количество?
     }
 
     protected void setProductInfo(Product product)

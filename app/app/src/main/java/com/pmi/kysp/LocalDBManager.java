@@ -86,4 +86,11 @@ public class LocalDBManager {
 
         return quantity;
     }
+
+    public void updateQuantity(String barcode, int newQuantity)
+    {
+        ContentValues cv = new ContentValues();
+        cv.put(DatabaseHelper.COLUMN_COUNT, newQuantity);
+        db.update(DatabaseHelper.TABLE, cv, DatabaseHelper.COLUMN_BARCODE + "=?", new String[]{barcode});
+    }
 }
