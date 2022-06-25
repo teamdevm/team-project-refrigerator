@@ -32,8 +32,6 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity {
     private static final int UPDATE_CONTAINERS = 1;
     Toast toast, toastError;
-    DatabaseHelper databaseHelper;
-    SQLiteDatabase db;
     ProductAdapter productAdapter;
     CategoryAdapter categoryAdapter;
     CategoryManager categoryManager;

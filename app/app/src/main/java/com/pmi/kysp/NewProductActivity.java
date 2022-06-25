@@ -84,20 +84,14 @@ public class NewProductActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContentValues cv = new ContentValues();
-                cv.put(DatabaseHelper.COLUMN_BARCODE, product.getBarcode());
+                LocalDBManager localDBManager = new LocalDBManager(getApplicationContext());
                 NumericUpDownWidget numericUpDownWidget = (NumericUpDownWidget)findViewById(R.id.numeric);
-                cv.put(DatabaseHelper.COLUMN_COUNT, numericUpDownWidget.getValue());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String date = sdf.format(productionDate.getTime());
-                cv.put(DatabaseHelper.COLUMN_DATE_OF_MANUFACTURE, date);
-                Cursor userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE + " where " + DatabaseHelper.COLUMN_BARCODE + "=?", new String[]{ product.getBarcode()});
-                if (userCursor.getCount() == 0)
-                    db.insert(DatabaseHelper.TABLE, null, cv);
+                boolean resultOfAddProduct = localDBManager.insertProduct(product.getBarcode(),numericUpDownWidget.getValue(),sdf.format(productionDate.getTime()));
+                if (resultOfAddProduct)
+                    Toast.makeText(getApplicationContext(), "Продукт успешно добавлен", Toast.LENGTH_LONG).show();
                 else
                     Toast.makeText(getApplicationContext(), "Данный продукт уже добавлен", Toast.LENGTH_LONG).show();
-                db.close();
-                userCursor.close();
                 finish();
             }
         });
