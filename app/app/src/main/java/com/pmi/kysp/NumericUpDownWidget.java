@@ -66,4 +66,10 @@ public class NumericUpDownWidget extends LinearLayout {
     {
         return Value;
     }
+
+    public void setValue(int newValue)
+    {
+        Value = newValue;
+        updateTextValue();
+    }
 }

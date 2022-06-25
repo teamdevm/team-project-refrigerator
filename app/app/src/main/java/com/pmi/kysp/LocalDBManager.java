@@ -72,4 +72,18 @@ public class LocalDBManager {
     {
         db.delete(DatabaseHelper.TABLE, DatabaseHelper.COLUMN_BARCODE + "=?", new String[]{barcode});
     }
+
+    public int getQuantity(String barcode)
+    {
+        Cursor cursor = db.rawQuery("SELECT " + DatabaseHelper.COLUMN_COUNT + " FROM " + DatabaseHelper.TABLE + " WHERE " + DatabaseHelper.COLUMN_BARCODE + " = ?", new String[]{barcode});
+
+        if (cursor.getCount() == 0)
+            return 0;
+
+        cursor.moveToFirst();
+        int quantity = cursor.getInt(0);
+        cursor.close();
+
+        return quantity;
+    }
 }

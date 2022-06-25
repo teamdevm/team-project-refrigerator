@@ -38,6 +38,11 @@ public class ProductActivity extends AppCompatActivity {
         Product product = ProductsApi.getProduct(barcode);
         product.updateExpDate(localDBManager.getManufactureDate(barcode));
 
+        int quantity = localDBManager.getQuantity(barcode);
+        NumericUpDownWidget numericUpDownWidget = (NumericUpDownWidget) findViewById(R.id.numeric);
+        numericUpDownWidget.setValue(quantity);
+
+
         setProductInfo(product);
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
