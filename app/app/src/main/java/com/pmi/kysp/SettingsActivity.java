@@ -53,6 +53,7 @@ public class SettingsActivity extends Activity {
                 popTimePicker(v);
             }
         });
+        loadPreferences();
 
         // TODO: Более красивое решение нужно
         ImageButton btnScan = findViewById(R.id.footer__scan_barcode_button);
@@ -128,6 +129,12 @@ public class SettingsActivity extends Activity {
     @Override
     protected void onStop(){
         super.onStop();
+        savePreferences();
+    }
+
+    @Override
+    protected  void onDestroy(){
+        super.onDestroy();
         savePreferences();
     }
 
