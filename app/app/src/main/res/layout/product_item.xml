@@ -40,7 +40,7 @@
         android:textColor="@color/white"
         android:textAllCaps="false"
         android:fontFamily="@font/namu"
-        android:textSize="15sp"
+        android:textSize="13sp"
         android:background="@drawable/preview_down"
         android:id="@+id/product_item__exp_date"/>
 </LinearLayout>
