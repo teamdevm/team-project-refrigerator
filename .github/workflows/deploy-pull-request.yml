@@ -20,5 +20,6 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
         script: |
-          git -C refrigerator_project/team-project-refrigerator checkout dev
-          git -C refrigerator_project/team-project-refrigerator pull
+          if ! [ -d pr/${{ github.event.pull_request.number }} ]; then git clone git@github.com:teamdevm/team-project-buses.git pr/${{ github.event.pull_request.number }}; fi
+          git -C pr/${{ github.event.pull_request.number }} fetch
+          git -C pr/${{ github.event.pull_request.number }} checkout origin/${{ github.head_ref }}
