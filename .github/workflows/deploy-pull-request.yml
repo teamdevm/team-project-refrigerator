@@ -20,5 +20,6 @@ jobs:
         PORT: ${{ secrets.PORT }}
         KEY: ${{ secrets.SSHKEY }}
         script: |
+          git -C pull_request/team-project-refrigerator fetch
           git -C pull_request/team-project-refrigerator checkout origin/${{ github.head_ref }}
-          git -C pull_request/team-project-refrigerator pull
+
