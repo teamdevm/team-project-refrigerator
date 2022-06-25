@@ -38,6 +38,16 @@ public class ProductActivity extends AppCompatActivity {
         Product product = ProductsApi.getProduct(barcode);
         product.updateExpDate(localDBManager.getManufactureDate(barcode));
 
+        int quantity = localDBManager.getQuantity(barcode);
+        NumericUpDownWidget numericUpDownWidget = (NumericUpDownWidget) findViewById(R.id.numeric);
+        numericUpDownWidget.setValue(quantity);
+        numericUpDownWidget.setOnValueChangeListener(new NumericUpDownWidget.ValueChangeListener() {
+            @Override
+            public void onValueChange(int value) {
+                localDBManager.updateQuantity(barcode, value);
+            }
+        });
+
         setProductInfo(product);
 
         deleteButton.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +57,6 @@ public class ProductActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        // TODO: количество?
     }
 
     protected void setProductInfo(Product product)

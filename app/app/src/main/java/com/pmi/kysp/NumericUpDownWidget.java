@@ -12,6 +12,16 @@ import androidx.appcompat.widget.AppCompatButton;
 
 public class NumericUpDownWidget extends LinearLayout {
     private int Value;
+    private ValueChangeListener valueChangeListener;
+
+    public interface ValueChangeListener {
+        void onValueChange(int value);
+    }
+
+    public void setOnValueChangeListener(ValueChangeListener valueChangeListener)
+    {
+        this.valueChangeListener = valueChangeListener;
+    }
 
     public NumericUpDownWidget(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
@@ -43,6 +53,8 @@ public class NumericUpDownWidget extends LinearLayout {
             public void onClick(View v) {
                 if (Value == 1) return;
                 Value--;
+                if (valueChangeListener != null)
+                    valueChangeListener.onValueChange(Value);
                 updateTextValue();
             }
         });
@@ -51,6 +63,8 @@ public class NumericUpDownWidget extends LinearLayout {
             @Override
             public void onClick(View v) {
                 Value++;
+                if (valueChangeListener != null)
+                    valueChangeListener.onValueChange(Value);
                 updateTextValue();
             }
         });
@@ -65,5 +79,11 @@ public class NumericUpDownWidget extends LinearLayout {
     public int getValue()
     {
         return Value;
+    }
+
+    public void setValue(int newValue)
+    {
+        Value = newValue;
+        updateTextValue();
     }
 }
