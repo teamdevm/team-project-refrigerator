@@ -66,6 +66,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             productImageView.setImageBitmap(bitmap);
 
             productExpDate.setText(product.getExpDateString());
+
+            if (product.isExpired())
+                productExpDate.setActivated(true);
         }
     }
 

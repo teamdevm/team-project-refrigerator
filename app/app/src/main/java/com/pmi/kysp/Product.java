@@ -1,5 +1,7 @@
 package com.pmi.kysp;
 
+import static java.lang.Math.abs;
+
 import android.util.Log;
 
 import java.time.LocalDate;
@@ -48,12 +50,18 @@ public class Product {
         expiring_date = (int)ChronoUnit.DAYS.between(LocalDate.now(), expirationDate);
     }
 
+    public boolean isExpired()
+    {
+        return expiring_date < 0;
+    }
+
     public String getExpDateString(){
-        String expDate = Integer.toString(expiring_date) + " ";
+        int expDays = abs(expiring_date);
+        String expDate = Integer.toString(expDays) + " ";
 
-        int rem = expiring_date % 10;
+        int rem = expDays % 10;
 
-        if (expiring_date > 10 && expiring_date < 20)
+        if (expDays > 10 && expDays < 20)
             expDate += "дней";
         else if (rem % 10 == 1)
             expDate += "день";
@@ -61,6 +69,11 @@ public class Product {
             expDate += "дней";
         else
             expDate += "дня";
+
+        if (isExpired())
+        {
+            expDate = "просрочено на\n" + expDate;
+        }
 
         return expDate;
     }

@@ -55,7 +55,7 @@
                     android:textColor="@color/white"
                     android:textAllCaps="false"
                     android:fontFamily="@font/namu"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     android:background="@drawable/preview_down"
                     android:id="@+id/production_button"/>
             </LinearLayout>
