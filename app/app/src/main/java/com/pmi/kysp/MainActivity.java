@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(int position, Product product) {
                 Intent productIntent = new Intent(MainActivity.this, ProductActivity.class);
                 productIntent.putExtra("barcode", product.getBarcode());
-                startActivity(productIntent);
+                startActivityForResult(productIntent, UPDATE_CONTAINERS);
             }
         });
 
