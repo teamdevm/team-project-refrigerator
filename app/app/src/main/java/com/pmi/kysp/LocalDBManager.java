@@ -67,4 +67,9 @@ public class LocalDBManager {
 
         return manufactureDate;
     }
+
+    public void deleteProduct(String barcode)
+    {
+        db.delete(DatabaseHelper.TABLE, DatabaseHelper.COLUMN_BARCODE + "=?", new String[]{barcode});
+    }
 }

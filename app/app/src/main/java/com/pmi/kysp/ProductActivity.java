@@ -43,7 +43,8 @@ public class ProductActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // TODO: запрос на удаление и закрытие активити
+                localDBManager.deleteProduct(barcode);
+                finish();
             }
         });
 
