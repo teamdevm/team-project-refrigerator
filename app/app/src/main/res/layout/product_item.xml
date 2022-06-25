@@ -29,7 +29,7 @@
             android:gravity="bottom"
             android:fontFamily="@font/namu"
             android:textColor="@color/black"
-            android:textSize="20sp"
+            android:textSize="14sp"
             android:padding="8dp"/>
     </FrameLayout>
     <androidx.appcompat.widget.AppCompatButton
