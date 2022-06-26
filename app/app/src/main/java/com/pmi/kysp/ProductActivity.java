@@ -40,7 +40,7 @@ public class ProductActivity extends AppCompatActivity {
         Log.d("barcode", barcode);
         product = ProductsApi.getProduct(barcode);
         if (product == null){
-            Toast.makeText(getApplicationContext(), "Не удалось загрузить информацию о продукте.\nПроверьте подклчюение к интернету", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Не удалось загрузить информацию о продукте.\nПроверьте подключение к интернету", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
