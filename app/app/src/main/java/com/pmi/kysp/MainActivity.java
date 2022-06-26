@@ -142,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String content = BarcodeScanner.Decode(requestCode, resultCode, data);
-        //content = "4607052401302";
+
         if (content != null){
             int responseCode = ProductsApi.checkProduct(content);
             if (responseCode == -1){
@@ -165,6 +165,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onStart(){
+        super.onStart();
+        loadData();
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();
