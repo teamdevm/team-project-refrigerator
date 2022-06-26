@@ -96,7 +96,7 @@ public class NewProductActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Продукт успешно добавлен", Toast.LENGTH_LONG).show();
                     SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("SettingsNotification", getApplicationContext().MODE_PRIVATE);
                     boolean switchNotificationsValue = sharedPreferences.getBoolean(SettingsActivity.SWITCH_NOTIFICATIONS, true);
-                    if (!switchNotificationsValue) {
+                    if (switchNotificationsValue) {
                         try{
                             product.updateExpDate(localDBManager.getManufactureDate(product.getBarcode()));
                         }catch (ParseException e){
