@@ -3,6 +3,7 @@ package com.pmi.kysp;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -23,6 +24,7 @@ import org.w3c.dom.Text;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,6 +33,7 @@ public class NewProductActivity extends AppCompatActivity {
     final Calendar productionDate = Calendar.getInstance();
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,7 @@ public class NewProductActivity extends AppCompatActivity {
 
         String barcode = getIntent().getExtras().getString("barcode");
 
-        Product product = ProductsApi.getProduct(barcode);
+        product = ProductsApi.getProduct(barcode);
 
         if (product == null){
             Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код\nПроверьте подклчюение к интернету", Toast.LENGTH_LONG).show();
@@ -88,10 +91,23 @@ public class NewProductActivity extends AppCompatActivity {
                 NumericUpDownWidget numericUpDownWidget = (NumericUpDownWidget)findViewById(R.id.numeric);
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                 boolean resultOfAddProduct = localDBManager.insertProduct(product.getBarcode(),numericUpDownWidget.getValue(),sdf.format(productionDate.getTime()));
-                if (resultOfAddProduct)
+                if (resultOfAddProduct) {
                     Toast.makeText(getApplicationContext(), "Продукт успешно добавлен", Toast.LENGTH_LONG).show();
+                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("SettingsNotification", getApplicationContext().MODE_PRIVATE);
+                    boolean switchNotificationsValue = sharedPreferences.getBoolean(SettingsActivity.SWITCH_NOTIFICATIONS, true);
+                    if (!switchNotificationsValue) {
+                        try{
+                            product.updateExpDate(localDBManager.getManufactureDate(product.getBarcode()));
+                        }catch (ParseException e){
+                            e.printStackTrace();
+                        }
+                        ProductsNotificationManager productsNotificationManager = new ProductsNotificationManager(getApplicationContext());
+                        productsNotificationManager.setNotification(product);
+                    }
+                }
                 else
                     Toast.makeText(getApplicationContext(), "Данный продукт уже добавлен", Toast.LENGTH_LONG).show();
+
                 finish();
             }
         });

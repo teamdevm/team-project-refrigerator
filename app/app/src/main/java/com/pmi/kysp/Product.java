@@ -77,4 +77,8 @@ public class Product {
 
         return expDate;
     }
+
+    public int getExpiringDate(){
+        return expiring_date;
+    }
 }

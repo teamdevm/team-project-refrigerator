@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -17,6 +18,7 @@ import java.io.InputStream;
 import java.text.ParseException;
 
 public class ProductActivity extends AppCompatActivity {
+    Product product;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +26,7 @@ public class ProductActivity extends AppCompatActivity {
         try {
             initActivity();
         } catch (ParseException e) {
+            Toast.makeText(this, "Не удалость загрузить информацию о продукте", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
@@ -35,7 +38,7 @@ public class ProductActivity extends AppCompatActivity {
 
         String barcode = getIntent().getExtras().getString("barcode");
         Log.d("barcode", barcode);
-        Product product = ProductsApi.getProduct(barcode);
+        product = ProductsApi.getProduct(barcode);
         product.updateExpDate(localDBManager.getManufactureDate(barcode));
 
         int quantity = localDBManager.getQuantity(barcode);
@@ -53,6 +56,8 @@ public class ProductActivity extends AppCompatActivity {
         deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ProductsNotificationManager productsNotificationManager = new ProductsNotificationManager(getApplicationContext());
+                productsNotificationManager.disableNotification(product);
                 localDBManager.deleteProduct(barcode);
                 finish();
             }

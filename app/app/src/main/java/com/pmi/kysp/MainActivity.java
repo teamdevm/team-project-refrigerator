@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnMain.setActivated(true);
 
+
         // Категории
         categoryAdapter = new CategoryAdapter();
         RecyclerView categoryRecyclerView = findViewById(R.id.category_list);
@@ -141,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String content = BarcodeScanner.Decode(requestCode, resultCode, data);
-
+        //content = "4607052401302";
         if (content != null){
             int responseCode = ProductsApi.checkProduct(content);
             if (responseCode == -1){
