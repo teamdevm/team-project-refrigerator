@@ -69,6 +69,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
             if (product.isExpired())
                 productExpDate.setActivated(true);
+            else
+                productExpDate.setActivated(false);
         }
     }
 

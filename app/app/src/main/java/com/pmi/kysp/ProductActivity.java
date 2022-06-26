@@ -82,6 +82,10 @@ public class ProductActivity extends AppCompatActivity {
         {
             expDateBtn.setActivated(true);
         }
+        else
+        {
+            expDateBtn.setActivated(false);
+        }
 
         byte[] decodedString = Base64.decode(product.getImage(), Base64.NO_WRAP);
         InputStream inputStream = new ByteArrayInputStream(decodedString);
