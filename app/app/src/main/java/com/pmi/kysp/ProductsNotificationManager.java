@@ -53,8 +53,7 @@ public class ProductsNotificationManager {
         alertIntent.putExtra("isExpired", true);
         alertIntent.putExtra("requestCode", -requesCode);
         Long alertTime = calculatingTimeForExpiredProduct(product);
-        alarmManager.setExact(AlarmManager.RTC_WAKEUP, alertTime, PendingIntent.getBroadcast(context,-requesCode , alertIntent,
-                PendingIntent.FLAG_UPDATE_CURRENT));
+        alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(alertTime, PendingIntent.getBroadcast(context,-requesCode , alertIntent, PendingIntent.FLAG_UPDATE_CURRENT)), PendingIntent.getBroadcast(context,-requesCode , alertIntent, PendingIntent.FLAG_UPDATE_CURRENT));
 
         if (!product.isExpired()){
             alertIntent = new Intent(context, ProductsNotification.class);
@@ -63,8 +62,7 @@ public class ProductsNotificationManager {
             alertIntent.putExtra("isExpired", false);
             alertIntent.putExtra("requestCode", requesCode);
             alertTime = calculatingTimeBeforeNotification(product);
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, alertTime, PendingIntent.getBroadcast(context, requesCode, alertIntent,
-                    PendingIntent.FLAG_UPDATE_CURRENT));
+            alarmManager.setAlarmClock(new AlarmManager.AlarmClockInfo(alertTime, PendingIntent.getBroadcast(context,requesCode , alertIntent, PendingIntent.FLAG_UPDATE_CURRENT)), PendingIntent.getBroadcast(context,requesCode , alertIntent, PendingIntent.FLAG_UPDATE_CURRENT));
         }
 
     }

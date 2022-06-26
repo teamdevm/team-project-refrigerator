@@ -33,7 +33,7 @@ public class ProductsNotification extends BroadcastReceiver {
         builder.setSmallIcon(R.mipmap.ic_notification);
         builder.setContentIntent(pendingIntent);
         builder.setAutoCancel(true);
-        builder.setDefaults(Notification.DEFAULT_VIBRATE);
+        builder.setDefaults(Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND);
         NotificationManagerCompat managerCompat = NotificationManagerCompat.from(context);
         managerCompat.notify(requestCode, builder.build());
     }
