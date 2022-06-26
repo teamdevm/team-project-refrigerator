@@ -93,4 +93,19 @@ public class LocalDBManager {
         cv.put(DatabaseHelper.COLUMN_COUNT, newQuantity);
         db.update(DatabaseHelper.TABLE, cv, DatabaseHelper.COLUMN_BARCODE + "=?", new String[]{barcode});
     }
+
+    public boolean insertProduct(String barcode, int count, String date){
+        ContentValues cv = new ContentValues();
+        cv.put(DatabaseHelper.COLUMN_BARCODE, barcode);
+        cv.put(DatabaseHelper.COLUMN_COUNT, count);
+        cv.put(DatabaseHelper.COLUMN_DATE_OF_MANUFACTURE, date);
+        Cursor userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE + " where " + DatabaseHelper.COLUMN_BARCODE + "=?", new String[]{ barcode});
+        int countProducts = userCursor.getCount();
+        userCursor.close();
+        if (countProducts == 0) {
+            db.insert(DatabaseHelper.TABLE, null, cv);
+            return true;
+        }
+        return false;
+    }
 }

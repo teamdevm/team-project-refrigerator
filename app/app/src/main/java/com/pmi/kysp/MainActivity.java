@@ -32,8 +32,6 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity {
     private static final int UPDATE_CONTAINERS = 1;
     Toast toast, toastError;
-    DatabaseHelper databaseHelper;
-    SQLiteDatabase db;
     ProductAdapter productAdapter;
     CategoryAdapter categoryAdapter;
     CategoryManager categoryManager;
@@ -47,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         ImageButton btnSettings = findViewById(R.id.footer__settings_button);
 
         btnMain.setActivated(true);
+
 
         // Категории
         categoryAdapter = new CategoryAdapter();
@@ -143,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         String content = BarcodeScanner.Decode(requestCode, resultCode, data);
-
+        //content = "4607052401302";
         if (content != null){
             int responseCode = ProductsApi.checkProduct(content);
             if (responseCode == -1){

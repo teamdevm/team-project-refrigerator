@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.NumberPicker;
 import android.widget.TextView;
@@ -53,6 +54,7 @@ public class SettingsActivity extends Activity {
                 popTimePicker(v);
             }
         });
+        loadPreferences();
 
         // TODO: Более красивое решение нужно
         ImageButton btnScan = findViewById(R.id.footer__scan_barcode_button);
@@ -74,6 +76,7 @@ public class SettingsActivity extends Activity {
                 BarcodeScanner.Scan(SettingsActivity.this);
             }
         });
+
     }
     public void popTimePicker(View view)
     {
@@ -129,6 +132,16 @@ public class SettingsActivity extends Activity {
     protected void onStop(){
         super.onStop();
         savePreferences();
+        ProductsNotificationManager productsNotificationManager = new ProductsNotificationManager(getApplicationContext());
+        productsNotificationManager.updateNotifications();
+    }
+
+    @Override
+    protected  void onDestroy(){
+        super.onDestroy();
+        savePreferences();
+        ProductsNotificationManager productsNotificationManager = new ProductsNotificationManager(getApplicationContext());
+        productsNotificationManager.updateNotifications();
     }
 
 

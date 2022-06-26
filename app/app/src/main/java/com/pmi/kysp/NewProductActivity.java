@@ -3,6 +3,7 @@ package com.pmi.kysp;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
@@ -23,6 +24,7 @@ import org.w3c.dom.Text;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -31,6 +33,7 @@ public class NewProductActivity extends AppCompatActivity {
     final Calendar productionDate = Calendar.getInstance();
     DatabaseHelper sqlHelper;
     SQLiteDatabase db;
+    Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class NewProductActivity extends AppCompatActivity {
 
     protected void initActivity()
     {
+        product = null;
         sqlHelper = new DatabaseHelper(this);
         db = sqlHelper.open();
 
@@ -48,10 +52,10 @@ public class NewProductActivity extends AppCompatActivity {
 
         String barcode = getIntent().getExtras().getString("barcode");
 
-        Product product = ProductsApi.getProduct(barcode);
+        product = ProductsApi.getProduct(barcode);
 
         if (product == null){
-            Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код\nПроверьте подклчюение к интернету", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Не удалось загрузить информацию о продукте.\nПроверьте подключение к интернету", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
@@ -84,20 +88,27 @@ public class NewProductActivity extends AppCompatActivity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ContentValues cv = new ContentValues();
-                cv.put(DatabaseHelper.COLUMN_BARCODE, product.getBarcode());
+                LocalDBManager localDBManager = new LocalDBManager(getApplicationContext());
                 NumericUpDownWidget numericUpDownWidget = (NumericUpDownWidget)findViewById(R.id.numeric);
-                cv.put(DatabaseHelper.COLUMN_COUNT, numericUpDownWidget.getValue());
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                String date = sdf.format(productionDate.getTime());
-                cv.put(DatabaseHelper.COLUMN_DATE_OF_MANUFACTURE, date);
-                Cursor userCursor = db.rawQuery("select * from " + DatabaseHelper.TABLE + " where " + DatabaseHelper.COLUMN_BARCODE + "=?", new String[]{ product.getBarcode()});
-                if (userCursor.getCount() == 0)
-                    db.insert(DatabaseHelper.TABLE, null, cv);
+                boolean resultOfAddProduct = localDBManager.insertProduct(product.getBarcode(),numericUpDownWidget.getValue(),sdf.format(productionDate.getTime()));
+                if (resultOfAddProduct) {
+                    Toast.makeText(getApplicationContext(), "Продукт успешно добавлен", Toast.LENGTH_LONG).show();
+                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("SettingsNotification", getApplicationContext().MODE_PRIVATE);
+                    boolean switchNotificationsValue = sharedPreferences.getBoolean(SettingsActivity.SWITCH_NOTIFICATIONS, true);
+                    if (switchNotificationsValue) {
+                        try{
+                            product.updateExpDate(localDBManager.getManufactureDate(product.getBarcode()));
+                        }catch (ParseException e){
+                            e.printStackTrace();
+                        }
+                        ProductsNotificationManager productsNotificationManager = new ProductsNotificationManager(getApplicationContext());
+                        productsNotificationManager.setNotification(product);
+                    }
+                }
                 else
                     Toast.makeText(getApplicationContext(), "Данный продукт уже добавлен", Toast.LENGTH_LONG).show();
-                db.close();
-                userCursor.close();
+
                 finish();
             }
         });
