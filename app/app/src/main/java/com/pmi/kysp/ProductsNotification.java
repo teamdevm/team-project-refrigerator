@@ -27,8 +27,8 @@ public class ProductsNotification extends BroadcastReceiver {
             builder.setContentTitle("Просроченный продукт");
             builder.setStyle(new NotificationCompat.BigTextStyle().bigText(String.format("Продукт '%s' просрочен",product_name)));
         }else{
-            builder.setContentTitle("Продукт скоро испортиться");
-            builder.setStyle(new NotificationCompat.BigTextStyle().bigText(String.format("Продукт '%s' скоро испортиться",product_name)));
+            builder.setContentTitle("Продукт скоро испортится");
+            builder.setStyle(new NotificationCompat.BigTextStyle().bigText(String.format("Продукт '%s' скоро испортится",product_name)));
         }
         builder.setSmallIcon(R.mipmap.ic_notification);
         builder.setContentIntent(pendingIntent);
