@@ -26,12 +26,12 @@ public class ProductActivity extends AppCompatActivity {
         try {
             initActivity();
         } catch (ParseException e) {
-            Toast.makeText(this, "Не удалость загрузить информацию о продукте", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
 
     protected void initActivity() throws ParseException {
+        product = null;
         LocalDBManager localDBManager = new LocalDBManager(this);
 
         AppCompatButton deleteButton = (AppCompatButton) findViewById(R.id.product_activity__del_button);
@@ -39,6 +39,11 @@ public class ProductActivity extends AppCompatActivity {
         String barcode = getIntent().getExtras().getString("barcode");
         Log.d("barcode", barcode);
         product = ProductsApi.getProduct(barcode);
+        if (product == null){
+            Toast.makeText(getApplicationContext(), "Не удалось загрузить информацию о продукте.\nПроверьте подклчюение к интернету", Toast.LENGTH_LONG).show();
+            finish();
+            return;
+        }
         product.updateExpDate(localDBManager.getManufactureDate(barcode));
 
         int quantity = localDBManager.getQuantity(barcode);

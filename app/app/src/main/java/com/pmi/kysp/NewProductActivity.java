@@ -44,6 +44,7 @@ public class NewProductActivity extends AppCompatActivity {
 
     protected void initActivity()
     {
+        product = null;
         sqlHelper = new DatabaseHelper(this);
         db = sqlHelper.open();
 
@@ -54,7 +55,7 @@ public class NewProductActivity extends AppCompatActivity {
         product = ProductsApi.getProduct(barcode);
 
         if (product == null){
-            Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код\nПроверьте подклчюение к интернету", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Не удалось считать штрих-код.\nПроверьте подклчюение к интернету", Toast.LENGTH_LONG).show();
             finish();
             return;
         }
