@@ -20,7 +20,7 @@ public class ProductsNotification extends BroadcastReceiver {
         Intent productIntent = new Intent(context, ProductActivity.class);
         productIntent.putExtra("barcode", barcode);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, productIntent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, requestCode * 1000000000, productIntent, PendingIntent.FLAG_IMMUTABLE);
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ProductsNotification");
 
         if (isExpiredProduct) {
